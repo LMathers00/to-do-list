@@ -1,16 +1,46 @@
-import './App.scss';
+import "./App.css";
 import Title from "./Components/Title/Title"
-import InputBar from './Components/InputBar/InputBar';
-import List from './Components/List/List';
+import ToDoContainer from "./Components/ToDoContainer/ToDoContainer";
+import Input from "./Components/Input/Input";
+import { useState } from "react";
 
 const App = () => {
+  const [tasks, setTasks] = useState([]);
+  const [input, setInput] = useState("");
+
+  const handleInput = (event) => {
+    setInput(event.target.value);
+  };
+//need to add typed task to array
+  const addTask = (tasks, input) => {
+    let customTasks = [...tasks];
+    customTasks.push(input);
+    setTasks(customTasks);
+    return customTasks;
+    };
+//Need to be able to delete tasks
+  const deleteTask = (tasks, index) => {
+    let customTasks = [...tasks];
+    customTasks.splice(index, 1);
+    setTasks(customTasks);
+    return customTasks;
+  };
+//Updating list when array changes
+  const updateTasks = () => {
+    addTask(tasks, input);
+  };
+
+  const taskDeletion = (taskIndex) => {
+    deleteTask(tasks, taskIndex);
+  };
+
   return (
-    <div className='Application'>
+    <div className="App">
       <Title/>
-      <InputBar/>
-      <List PlaceholderText = "In order to be productive, you might wanna set some tasks. Right? That's why you're here, to make a To-Do list. What other reason is there?"/>
+      <Input value={input} handleInput={handleInput} addTask={addTask} updateTasks={updateTasks}/>
+      <ToDoContainer tasks={tasks} taskDeletion={taskDeletion}/>
     </div>
-  )
+  );
 }
 
 export default App;

@@ -18,6 +18,12 @@ const App = () => {
     setTasks(customTasks);
     return customTasks;
     };
+
+    if(input === ""){
+        alert("Plz eneter a task")
+      }
+    
+
 //Need to be able to delete tasks
   const deleteTask = (tasks, index) => {
     let customTasks = [...tasks];

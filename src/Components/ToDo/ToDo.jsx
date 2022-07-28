@@ -8,8 +8,8 @@ const ToDo = ({ value, taskDeletion, index }) => {
     return (
         <div className="tasks">
             <input className="tasks__check" type="checkbox"/>
-            <button className="tasks__delete" onClick={handleDeletion}>DELETE</button>
             <p className="tasks__title">{value}</p>
+            <button className="tasks__delete" onClick={handleDeletion}>DELETE</button>
         </div>
     );
 };
